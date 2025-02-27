@@ -31,6 +31,10 @@
   margin-top: 12px;
 }
 
+.amazon-logo:active {
+  border: none;
+}
+
 .amazon-mobile-logo {
   display: none;
 }
@@ -46,6 +50,7 @@
 
   .amazon-logo {
     display: none;
+    pointer-events: none;
   }
 
   .amazon-mobile-logo {
