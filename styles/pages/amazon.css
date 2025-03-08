@@ -145,6 +145,8 @@
 }
 .added-to-cart-visible {
   opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
 }
 
 .added-to-cart img {
