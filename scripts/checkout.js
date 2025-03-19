@@ -53,6 +53,7 @@ cart.forEach((cartItem) => {
             <span class="save-quantity-link link-primary js-save-link"
               data-product-id="${matchingProduct.id}">
               Save
+               </span>
           <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${
             matchingProduct.id
           }">
@@ -105,6 +106,7 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
     const container = document.querySelector(
       `.js-cart-item-container-${productId}`
     );
+    updateCartQuantity();
     container.remove();
     updateCartQuantity();
   });
