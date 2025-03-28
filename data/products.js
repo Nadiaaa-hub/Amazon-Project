@@ -33,41 +33,28 @@ class Product {
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`;
   }
+
+  extraInfoHTML() {
+    return "";
+  }
 }
 
-const product1 = new Product(
-  {
-    id: "id1",
-    image: "images/products/backpack.jpg",
-    name: "Backpacks",
-    rating: {
-      stars: 4,
-      count: 890,
-    },
-    priceCents: 700,
-  },
-  {
-    id: "id2",
-    image: "images/products/umbrella.jpg",
-    name: "Umbrella",
-    rating: {
-      stars: 3.5,
-      count: 200,
-    },
-    priceCents: 450,
-  },
-  {
-    id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-    image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-    name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-    rating: {
-      stars: 4.5,
-      count: 87,
-    },
-    priceCents: 1090,
-    keywords: ["socks", "sports", "apparel"],
+class Clothing extends Product {
+  sizeChartLink;
+
+  constructor(productsDetails) {
+    super(productsDetails);
+    this.sizeChartLink = productsDetails.sizeChartLink;
   }
-);
+
+  extraInfoHTML() {
+    super.extraInfoHTML();
+    return `
+    <a href = "${this.sizeChartLink}" target="_blank">
+    Size chart</a>
+    `;
+  }
+}
 
 export const products = [
   {
@@ -158,6 +145,8 @@ export const products = [
     },
     priceCents: 2400,
     keywords: ["hoodies", "sweaters", "apparel"],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png",
   },
   {
     id: "77919bbe-0e56-475b-adde-4f24dfed3a04",
@@ -549,7 +538,12 @@ export const products = [
     },
     priceCents: 2400,
     keywords: ["sweaters", "hoodies", "apparel", "mens"],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png",
   },
 ].map((productDetails) => {
+  if (productDetails.type === "clothing") {
+    return new Clothing(productDetails);
+  }
   return new Product(productDetails);
 });
